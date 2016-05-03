@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper
+android:layout_height="match_parent"
+android:layout_width="wrap_content"
+android:id="@+id/att_view_flipper"
+xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<!-- idx 0: ELENCO ATTIVITA-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_attivita">
+    </ListView>
+</LinearLayout>
+
+<!-- idx 1: MESSAGGIO IN CASO DI ERRORI -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/att_tv_usrmsg"
+        android:textSize="45sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:onClick="reloadActivity"/>
+
+</LinearLayout>
+
+<!-- idx 2: LOADING -->
+<ImageView
+    android:id="@+id/att_anim_waiting_placeholder"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:scaleType="fitXY"
+    android:background="@drawable/rnd_pupazzo_di_neve" />
+
+</ViewFlipper>

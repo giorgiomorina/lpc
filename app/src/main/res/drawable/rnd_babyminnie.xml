@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+    <item android:drawable="@drawable/b_frame_0_delay_02s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_1_delay_02s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_2_delay_02s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_3_delay_02s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_4_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_5_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_6_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_7_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_8_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_9_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_10_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_11_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_12_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_13_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_14_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_15_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_16_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_17_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_18_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_19_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_20_delay_015s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_21_delay_02s" android:duration="100" />
+    <item android:drawable="@drawable/b_frame_22_delay_02s" android:duration="100" />
+</animation-list>

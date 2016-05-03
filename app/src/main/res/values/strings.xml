@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">La Pulce Curiosa</string>
+    <string name="menu_calendario">Calendario attività</string>
+    <string name="menu_news">News</string>
+    <string name="menu_nostre_att">Le nostre attività</string>
+    <string name="menu_contatti">Contatti</string>
+    <string name="usrmsg_gen_err">Ops! Si è verificato un errore :(</string>
+    <string name="btn_load_more">Altro</string>
+    <string name="btn_load_more_loading">Caricando</string>
+</resources>

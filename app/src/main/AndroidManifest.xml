@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.lapulcecuriosa.lapulcecuriosa">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".LaPulceApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/icona"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- android:theme="@android:style/Theme.Holo.Light"> -->
+
+
+        <!--
+             launchMode=SingleTop: lo applico per gestire la parentela con l'activity figlia ed
+            evitare che la ricrei (onCreate)quando torno su di livello
+            http://developer.android.com/training/implementing-navigation/ancestral.html
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:label="La Pulce Curiosa"
+            android:launchMode="singleTop"
+            android:screenOrientation="userPortrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".NewsActivity"
+            android:label="News"
+            android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="userPortrait">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NewsSingleItem"
+            android:screenOrientation="userPortrait"
+            android:parentActivityName=".NewsActivity">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.NewsActivity" />
+
+        </activity>
+
+        <activity
+            android:name=".AttivitaActivity"
+            android:label="Le nostre attività"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="userPortrait">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ContattiActivity"
+            android:label="Contatti"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="userPortrait">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.MainActivity" />
+        </activity>
+
+        <!--
+             launchMode=SingleTop: lo applico per gestire la parentela con l'activity figlia ed
+            evitare che la ricrei (onCreate)quando torno su di livello
+            http://developer.android.com/training/implementing-navigation/ancestral.html
+        -->
+        <activity
+            android:name=".CalendarioActivity"
+            android:label="Calendario"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="userPortrait">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PrenotaActivity"
+            android:label="Prenota"
+            android:parentActivityName=".CalendarioActivity"
+            android:screenOrientation="userPortrait">
+
+            <!-- Per API < 16 (android 4.1) -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.lapulcecuriosa.lapulcecuriosa.CalendarioActivity" />
+        </activity>
+
+    </application>
+
+</manifest>
