@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import it.lapulcecuriosa.lapulcecuriosa.LaPulceApp.RSSXMLTag;
+//import it.lapulcecuriosa.lapulcecuriosa.LaPulceApp.RSSXMLTag;
 
 /**
  * Created by giorgio.morina on 21/04/2016.
@@ -24,12 +24,23 @@ import it.lapulcecuriosa.lapulcecuriosa.LaPulceApp.RSSXMLTag;
 public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssRow>> {
     private static final int NUM_ROWS_PER_PAGE = 10;
 
+    private enum RSSXMLTag {
+        TITLE, DATE, LINK, CONTENT, GUID, IGNORETAG;
+    }
+
 
     private RSSXMLTag currentTag; //segna l'attuale tag che sto leggendo
     private RssActivity rssActivity;
+    private String errMsg;
+    private boolean isFeedEnded=false;
+    private ArrayList<RssRow> rssRows;
 
     public RssDataController(RssActivity rssActivity) {
         this.rssActivity = rssActivity;
+    }
+
+    public boolean isFeedEnded(){
+        return isFeedEnded;
     }
 
     @Override
@@ -38,6 +49,7 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
         InputStream is=null;
         ArrayList<RssRow> rssRows=new ArrayList<RssRow>();
         int iNumLoadedRows=0;
+        int eventType=-1;
 
         try {
 
@@ -86,7 +98,7 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
             XmlPullParser xpp=factory.newPullParser();
             xpp.setInput(is,null);
 
-            int eventType=xpp.getEventType();
+            eventType=xpp.getEventType();
 
             RssRow rssRow = null;
             SimpleDateFormat dateFormat=new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss", Locale.US);
@@ -171,7 +183,7 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
                         rssRow.postDate = dateFormat.format(postDate);
 
                         //Tutto è basato sul presupposto che l'XML è esposto dall'articolo più recente al più vecchio.
-                        //alla prima apertura, al primo loop, la rssActivity.getdLastLoadedNews() è valorizzato a -1
+                        //alla prima apertura, al primo loop, la rssActivityIfc.getdLastLoadedNews() è valorizzato a -1
                         if (rssActivity.getdLastLoadedNews() >  postDate.getTime() || rssActivity.getdLastLoadedNews()==-1) {
 
                             //lista di ritorno:
@@ -181,9 +193,11 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
 
                         }
 
+                    } else if (strNode.equals("rss")) {
+                        setFeedEnded();
                     } else {
                         //la chiusura dei tag al di fuori di <item> non mi interessano
-                        currentTag= RSSXMLTag.IGNORETAG;
+                        currentTag=RSSXMLTag.IGNORETAG;
                     }
                     break;
 
@@ -194,7 +208,7 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
 
 
         } catch (Exception e) {
-            rssActivity.setErrMsg(e.getMessage());
+            setErrMsg(e.getMessage());
         }
         finally {
             if (is != null) {
@@ -206,13 +220,47 @@ public class RssDataController extends AsyncTask<String, Integer, ArrayList<RssR
             }
         }
 
+        if (eventType==XmlPullParser.END_DOCUMENT) {
+            setFeedEnded();
+        } else {
+            setFeedRunning();
+        }
+
         return rssRows;
+    }
+
+    private void setFeedRunning() {
+        isFeedEnded=false;
+    }
+    private void setFeedEnded() {
+        isFeedEnded=true;
     }
 
     @Override
     protected void onPostExecute(ArrayList<RssRow> rssRows) {
-        rssActivity.incrLoads();
-        rssActivity.synchUI(rssRows);
+        if ( (errMsg!=null && !errMsg.isEmpty() ) || (rssRows==null && rssRows.size()==0) ) {
+            rssActivity.setUiStatus(rssActivity.STATUS_ERROR);
+        } else {
+            rssActivity.setUiStatus(rssActivity.STATUS_LOADED);
+            setRssRows(rssRows);
+        }
+
+        rssActivity.synchUI();
     }
 
+    public ArrayList<RssRow> getFeed() {
+        return rssRows;
+    }
+
+    private void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    private void setRssRows(ArrayList<RssRow> rssRows) {
+        this.rssRows = rssRows;
+    }
 }

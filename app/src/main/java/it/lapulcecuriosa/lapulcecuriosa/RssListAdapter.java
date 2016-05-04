@@ -6,22 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 /**
- * Created by giorgio.morina on 02/05/2016.
+ * Created by giorgio.morina on 21/04/2016.
  */
-public class AttListAdapter extends ArrayAdapter<RssRow> {
+public class RssListAdapter extends ArrayAdapter<RssRow> {
     Activity context;
-    ArrayList<RssRow> attRssRows;
+    ArrayList<RssRow> newsRssRows;
 
-    public AttListAdapter(Context context, ArrayList<RssRow> objects) {
-        super(context, R.layout.att_row, objects);
+    public RssListAdapter(Context context, ArrayList<RssRow> objects) {
+        super(context, R.layout.rss_row, objects);
         this.context = (Activity)context;
-        this.attRssRows=objects;
+        this.newsRssRows=objects;
     }
 
     /**
@@ -40,20 +39,20 @@ public class AttListAdapter extends ArrayAdapter<RssRow> {
         //gestione del riciclo:
         if (convertView == null) {
             LayoutInflater inflater=context.getLayoutInflater();
-            convertView=inflater.inflate(R.layout.att_row,null);
+            convertView=inflater.inflate(R.layout.rss_row,null);
 
             vh = new ViewHolder();
-            vh.tvTitolo=(TextView)convertView.findViewById(R.id.att_row_titolo);
-            vh.tvData=(TextView)convertView.findViewById(R.id.att_row_data);
+            vh.tvTitolo=(TextView)convertView.findViewById(R.id.rss_row_titolo);
+            vh.tvData=(TextView)convertView.findViewById(R.id.rss_row_data);
             convertView.setTag(vh);
 
         } else {
             vh=(ViewHolder)convertView.getTag();
         }
 
-        vh.tvTitolo.setText(attRssRows.get(position).postTitle);
+        vh.tvTitolo.setText(newsRssRows.get(position).postTitle);
 
-        vh.tvData.setText(attRssRows.get(position).postDate);
+        vh.tvData.setText(newsRssRows.get(position).postDate);
 
 
         return convertView;

@@ -45,7 +45,7 @@
                 android:value="it.lapulcecuriosa.lapulcecuriosa.MainActivity" />
         </activity>
         <activity
-            android:name=".NewsSingleItem"
+            android:name=".RssSingleItem"
             android:screenOrientation="userPortrait"
             android:parentActivityName=".NewsActivity">
 

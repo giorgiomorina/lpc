@@ -1,11 +1,10 @@
 package it.lapulcecuriosa.lapulcecuriosa;
 
 import android.app.Application;
-import android.content.pm.ActivityInfo;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.widget.ImageView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,10 +20,6 @@ public class LaPulceApp extends Application {
 
     private static LaPulceApp instance;
 
-    public enum RSSXMLTag {
-        TITLE, DATE, LINK, CONTENT, GUID, IGNORETAG;
-    }
-
     public LaPulceApp(){
         instance=this;
     }
@@ -33,10 +28,30 @@ public class LaPulceApp extends Application {
         return instance;
     }
 
+    /**
+     * In base alla versione in uso dall'utente setta correttamente l'animazione
+     * a partire da un Drawable.
+     *
+     * @param ivAnim il placeholder sul quale settare l'animazione.
+     * @param drawable l'animazione
+     *
+     * */
+    public void setLoadingAnim(ImageView ivAnim, Drawable drawable) {
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            ivAnim.setBackgroundDrawable(drawable);
+        } else {
+            ivAnim.setBackground(drawable);
+        }
+    }
+
+    /**
+     * Restituisce un Drawable randomico a partire dalle res/drawable
+     * Per essere estratta, il nome della risorsa deve iniziare per "rnd_"
+     * */
     public Drawable getRandomLoadingAnimation() {
         Class r = R.drawable.class;
         Field[] f=r.getFields();
-        List<Drawable> randomResources=new ArrayList();
+        List<Drawable> randomResources=new ArrayList<>();
 
         for (Field resource :
                 f) {

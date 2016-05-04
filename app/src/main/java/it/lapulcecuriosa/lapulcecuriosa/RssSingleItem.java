@@ -7,14 +7,14 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class NewsSingleItem extends AppCompatActivity {
+public class RssSingleItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_single_item);
+        setContentView(R.layout.activity_rss_single_item);
 
-        TextView tvSingleItem=(TextView)findViewById(R.id.news_sngl_content);
+        TextView tvSingleItem=(TextView)findViewById(R.id.rss_sngl_content);
 
         //Articolo
         CharSequence strContent=null;

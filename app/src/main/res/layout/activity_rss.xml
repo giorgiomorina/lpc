@@ -2,7 +2,7 @@
 <ViewFlipper
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
-    android:id="@+id/news_view_flipper"
+    android:id="@+id/rss_view_flipper"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!-- idx 0: ELENCO NEWS-->
@@ -18,7 +18,7 @@
         </ListView>
 
         <ImageView
-            android:id="@+id/news_anim_waiting_placeholder"
+            android:id="@+id/rss_anim_waiting_placeholder"
             android:visibility="invisible"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -39,21 +39,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/news_tv_usrmsg"
+            android:id="@+id/rss_tv_usrmsg"
             android:textSize="45sp"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:onClick="reloadActivity"/>
 
     </LinearLayout>
-
-    <!-- idx 2: LOADING -->
-    <ImageView
-        android:id="@+id/zzznews_anim_waiting_placeholder"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:background="@drawable/rnd_pupazzo_di_neve" />
 
 </ViewFlipper>
